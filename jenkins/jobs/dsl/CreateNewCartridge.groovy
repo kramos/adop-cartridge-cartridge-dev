@@ -16,8 +16,14 @@ def createNewCartridgeJob = freeStyleJob(projectFolderName + "/CreateNewCartridg
         env('PROJECT_NAME',projectFolderName)
     }
     scm {
-            git("${source}", "${branch}")
-            credentials('adop-jenkins-master')
+            git{
+                remote{
+                    name("origin")
+                    url('${BASE_CARTRIDGE}')
+                    credentials("adop-jenkins-master")
+                }
+                branch("*/master")
+            }
     }
     wrappers {
         preBuildCleanup()
@@ -26,7 +32,7 @@ def createNewCartridgeJob = freeStyleJob(projectFolderName + "/CreateNewCartridg
         sshAgent("adop-jenkins-master")
     }
     steps {
-        shell('#!/bin/bash -ex
+        shell('''#!/bin/bash -ex
 
 # Create Gerrit repository
 target_repo_name=${NEW_CARTRIDGE}
@@ -46,12 +52,13 @@ if [ ${repo_exists} -eq 0 ]; then
   ssh -n -o StrictHostKeyChecking=no -p 29418 gerrit.service.adop.consul gerrit create-project --parent "All-Projects" "${target_repo_name}"
 else
   echo "Repository already exists, skipping: ${target_repo_name}"
+  exit 1
 fi
 
 # Setup remote & populate
 git remote add adop ssh://jenkins@gerrit.service.adop.consul:29418/"${target_repo_name}"
 git fetch adop
-git push adop +refs/remotes/origin/*:refs/heads/*')
-	}
+git push adop +refs/remotes/origin/*:refs/heads/*''')
+    }
     
  }
