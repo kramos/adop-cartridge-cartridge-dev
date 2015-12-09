@@ -58,7 +58,14 @@ fi
 # Setup remote & populate
 git remote add adop ssh://jenkins@gerrit.service.adop.consul:29418/"${target_repo_name}"
 git fetch adop
-git push adop +refs/remotes/origin/*:refs/heads/*''')
+git push adop +refs/remotes/origin/*:refs/heads/*
+
+set +x
+echo
+echo ALL FINISHED!
+echo You can now go to Gerrit and clone the Git repo for your new ${target_repo_name} cartridge!
+echo
+''')
     }
     
  }

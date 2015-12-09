@@ -12,7 +12,7 @@ def loadCartridgeJob = freeStyleJob(projectFolderName + "/LoadDevCartridge")
 // Setup Load_Cartridge
 loadCartridgeJob.with{
     parameters{
-        stringParam("CARTRIDGE_CLONE_URL", "", "Cartridge URL to load")
+        stringParam("CARTRIDGE_CLONE_URL", "ssh://jenkins@gerrit.service.adop.consul:29418/my-new-cartridge", "Cartridge URL to load")
     }
     environmentVariables {
         env('WORKSPACE_NAME',workspaceFolderName)
