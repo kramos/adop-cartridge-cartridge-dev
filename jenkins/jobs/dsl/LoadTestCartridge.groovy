@@ -1,28 +1,9 @@
-// Constants
-def gerritBaseUrl = "ssh://jenkins@gerrit.service.adop.consul:29418"
-def cartridgeBaseUrl = gerritBaseUrl + "/cartridges"
-def platformToolsGitUrl = gerritBaseUrl + "/platform-management"
 
 // Folders
 def workspaceFolderName = "${WORKSPACE_NAME}"
-
-def projectFolderName = workspaceFolderName + "/${PROJECT_NAME}"
-def projectFolder = folder(projectFolderName)
-
-def cartridgeManagementFolderName= projectFolderName + "/Cartridge_Management"
-def cartridgeManagementFolder = folder(cartridgeManagementFolderName) { displayName('Cartridge Management') }
-
-// Cartridge List
-def cartridge_list = []
-readFileFromWorkspace("${WORKSPACE}/cartridges.txt").eachLine { line ->
-    cartridge_repo_name = line.tokenize("/").last()
-    local_cartridge_url = cartridgeBaseUrl + "/" + cartridge_repo_name
-    cartridge_list << local_cartridge_url
-}
-
-
+def projectFolderName = "${PROJECT_NAME}"
 // Jobs
-def loadCartridgeJob = freeStyleJob(cartridgeManagementFolderName + "/Load_Cartridge")
+def loadCartridgeJob = freeStyleJob(projectFolderName + "/Load_Cartridge")
 
 // Setup Load_Cartridge
 loadCartridgeJob.with{
