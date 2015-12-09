@@ -52,6 +52,7 @@ if [ ${repo_exists} -eq 0 ]; then
   ssh -n -o StrictHostKeyChecking=no -p 29418 gerrit.service.adop.consul gerrit create-project --parent "All-Projects" "${target_repo_name}"
 else
   echo "Repository already exists, skipping: ${target_repo_name}"
+  exit 1
 fi
 
 # Setup remote & populate
