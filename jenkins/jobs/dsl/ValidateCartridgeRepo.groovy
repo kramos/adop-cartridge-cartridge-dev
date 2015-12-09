@@ -6,7 +6,7 @@ def projectFolderName = "${PROJECT_NAME}"
 def createValidateCartridgeRepoJob = freeStyleJob(projectFolderName + "/ValidateCartridgeRepo")
  
  // Setup Job 
- createValidateCartridgeRepo.with{
+ createValidateCartridgeRepoJob.with{
     parameters{
             stringParam("CARTRIDGE_REPO","git@innersource.accenture.com:adop/cartridge-specification.git","Git URL of the cartridge you want to validate.")
             stringParam("CARTRIDGE_SDK_VERSION","1.0","Cartridge SDK version specification to validate against.")
@@ -32,8 +32,7 @@ def createValidateCartridgeRepoJob = freeStyleJob(projectFolderName + "/Validate
         sshAgent("adop-jenkins-master")
     }
     steps {
-        shell('''
-#!/bin/bash -e
+        shell('''#!/bin/bash -e
 
 echo
 echo
