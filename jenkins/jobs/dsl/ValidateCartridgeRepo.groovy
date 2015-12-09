@@ -16,8 +16,14 @@ def createValidateCartridgeRepoJob = freeStyleJob(projectFolderName + "/Validate
         env('PROJECT_NAME',projectFolderName)
     }
     scm {
-            git("${CARTRIDGE_SDK_VERSION}", "*/master")
-            credentials('adop-jenkins-master')
+            git{
+                remote{
+                    name("origin")
+                    url('${CARTRIDGE_REPO}')
+                    credentials("adop-jenkins-master")
+                }
+                branch("*/master")
+            }
     }
     wrappers {
         preBuildCleanup()
