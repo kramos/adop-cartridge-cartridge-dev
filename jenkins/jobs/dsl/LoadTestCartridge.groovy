@@ -1,3 +1,7 @@
+// Constants
+def gerritBaseUrl = "ssh://jenkins@gerrit.service.adop.consul:29418"
+def cartridgeBaseUrl = gerritBaseUrl + "/cartridges"
+def platformToolsGitUrl = gerritBaseUrl + "/platform-management"
 
 // Folders
 def workspaceFolderName = "${WORKSPACE_NAME}"
