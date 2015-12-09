@@ -27,7 +27,7 @@ def loadCartridgeJob = freeStyleJob(cartridgeManagementFolderName + "/Load_Cartr
 // Setup Load_Cartridge
 loadCartridgeJob.with{
     parameters{
-        choiceParam('CARTRIDGE_CLONE_URL', cartridge_list, 'Cartridge URL to load')
+        stringParam("CARTRIDGE_CLONE_URL", "", "Cartridge URL to load")
     }
     environmentVariables {
         env('WORKSPACE_NAME',workspaceFolderName)
