@@ -37,7 +37,7 @@ def createNewCartridgeJob = freeStyleJob(projectFolderName + "/CreateNewCartridg
 # Create Gerrit repository
 target_repo_name=${NEW_CARTRIDGE}
 repo_exists=0
-list_of_repos=$(ssh -n -o StrictHostKeyChecking=no -p 29418 gerrit.service.adop.consul gerrit ls-projects --type code)
+list_of_repos=$(ssh -n -o StrictHostKeyChecking=no -p 29418 jenkins@gerrit gerrit ls-projects --type code)
 
 for repo in ${list_of_repos}
 do
