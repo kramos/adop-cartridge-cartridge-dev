@@ -8,7 +8,7 @@ def createNewCartridgeJob = freeStyleJob(projectFolderName + "/CreateNewCartridg
  // Setup Job 
  createNewCartridgeJob.with{
     parameters{
-            stringParam("BASE_CARTRIDGE","git@innersource.accenture.com:adop/cartridge-specification.git","Git URL of the cartridge you want to base the new cartridge on.")
+            stringParam("BASE_CARTRIDGE","https://github.com/Accenture/adop-cartridge-specification.git","Git URL of the cartridge you want to base the new cartridge on.")
             stringParam("NEW_CARTRIDGE","my-new-cartridge","Name for your new cartridge.")
     }
     environmentVariables {
@@ -49,14 +49,14 @@ do
 done
 
 if [ ${repo_exists} -eq 0 ]; then
-  ssh -n -o StrictHostKeyChecking=no -p 29418 gerrit.service.adop.consul gerrit create-project --parent "All-Projects" "${target_repo_name}"
+  ssh -n -o StrictHostKeyChecking=no -p 29418 jenkins@gerrit gerrit create-project --parent "All-Projects" "${target_repo_name}"
 else
   echo "Repository already exists, skipping: ${target_repo_name}"
   exit 1
 fi
 
 # Setup remote & populate
-git remote add adop ssh://jenkins@gerrit.service.adop.consul:29418/"${target_repo_name}"
+git remote add adop ssh://jenkins@gerrit:29418/"${target_repo_name}"
 git fetch adop
 git push adop +refs/remotes/origin/*:refs/heads/*
 

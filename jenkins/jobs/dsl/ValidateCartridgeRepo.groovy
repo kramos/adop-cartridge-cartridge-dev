@@ -8,7 +8,7 @@ def createValidateCartridgeRepoJob = freeStyleJob(projectFolderName + "/Validate
  // Setup Job 
  createValidateCartridgeRepoJob.with{
     parameters{
-            stringParam("CARTRIDGE_REPO","ssh://jenkins@gerrit.service.adop.consul:29418/my-new-cartridge","Git URL of the cartridge you want to validate.")
+            stringParam("CARTRIDGE_REPO","ssh://jenkins@gerrit:29418/my-new-cartridge","Git URL of the cartridge you want to validate.")
             stringParam("CARTRIDGE_SDK_VERSION","1.0","Cartridge SDK version specification to validate against.")
     }
     environmentVariables {
