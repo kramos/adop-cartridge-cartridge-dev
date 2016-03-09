@@ -13,9 +13,11 @@ Load this as a normal cartridge.  Load this via a running instance of this cartr
 #### CreateNewCartridge ####
 Specify a cartridge name and it will provide new repository local to your Gerrit instance.
 
-
 #### ValidateCartridgeRepo ####
 Ensure your cartridge still fits the specification.
 
 #### LoadTestCartridge ####
-Load in cartridge jobs from your local Gerrit instance./
+Load in cartridge jobs from your local Gerrit instance.
+
+#### PublishCartridgeRepo ####
+Publish your cartridge to a remote repository from Gerrit.
