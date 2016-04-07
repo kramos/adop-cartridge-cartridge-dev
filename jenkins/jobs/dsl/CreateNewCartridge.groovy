@@ -8,7 +8,7 @@ def createNewCartridgeJob = freeStyleJob(projectFolderName + "/CreateNewCartridg
  // Setup Job 
  createNewCartridgeJob.with{
     parameters{
-            stringParam("BASE_CARTRIDGE","https://github.com/Accenture/adop-cartridge-specification.git","Git URL of the cartridge you want to base the new cartridge on.")
+            stringParam("BASE_CARTRIDGE","https://github.com/Accenture/adop-cartridge-skeleton.git","Git URL of the cartridge you want to base the new cartridge on.")
             stringParam("NEW_CARTRIDGE","my-new-cartridge","Name for your new cartridge.")
     }
     environmentVariables {
