@@ -7,7 +7,7 @@ def platformToolsGitUrl = gerritBaseUrl + "/platform-management"
 def workspaceFolderName = "${WORKSPACE_NAME}"
 def projectFolderName = "${PROJECT_NAME}"
 // Jobs
-def loadCartridgeJob = freeStyleJob(projectFolderName + "/LoadDevCartridge")
+def loadCartridgeJob = freeStyleJob(projectFolderName)
 
 // Setup Load_Cartridge
 loadCartridgeJob.with{
